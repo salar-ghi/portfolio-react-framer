@@ -5,6 +5,8 @@ import LogoComponent from '../subComponents/LogoComponent'
 import SocialIcons from '../subComponents/SocialIcons'
 import { NavLink } from 'react-router-dom/cjs/react-router-dom'
 import { YinYang } from './AllSvgs'
+import { Intro } from './Intro'
+import { motion } from 'framer-motion'
 
 const MainContainer = styled.div`
 background: ${props => props.theme.body};
@@ -40,7 +42,7 @@ const BLOG = styled(NavLink)`
   z-index: 1;
 `
 const WORK = styled(NavLink)`
-  color: ${props => props.theme.text};
+  color: ${props => props.click ? props.theme.body : props.theme.text };
   position: absolute;
   top: 50%;
   left: calc(1rem + 2vw);
@@ -58,7 +60,7 @@ const BottomBar = styled.div`
   justify-content: space-evenly;
 `
 const ABOUT = styled(NavLink)`
-  color: ${props => props.theme.text};
+  color: ${props => props.click ? props.theme.body : props.theme.text };
   text-decoration: none;
   z-index: 1;
 `
@@ -75,11 +77,10 @@ to{
   transform: rotate(360deg);
 }
 `
-
 const Center = styled.button`
   position: absolute;
   top: ${props => props.click ? '85%' : '50%' };
-  left: ${props => props.click ? '92%' : '50%' };
+  left: ${props => props.click ? '90%' : '50%' };
   transform: translate(-50%, -50%);
   border: none;
   outline: none;
@@ -93,60 +94,86 @@ const Center = styled.button`
   transition: all 1s ease;
   
   &>:first-child{
-    animation: ${rotate} infinite 2.2s linear;
+    animation: ${rotate} infinite 1.8s linear;
   }
   &>:last-child{
     display: ${props => props.click ? 'none' : 'inline-block' }
     padding-top: 1rem;
   }
 `
+const DarkDiv = styled.div`
+  position: absolute;
+  top: 0;
+  background-color: #000;
+  bottom: 0;
+  right: 50%;
+  width: ${props => props.click ? '50%' : '0%'};
+  height: ${props => props.click ? '100%' : '0%'};
+  z-index: 1;
+  transition: height 0.5s ease, width 1s ease 0.5s
+`
 
 export const Main = () => {
-
   const [click, setClick] = useState(false);
   const handleClick = () => setClick(!click);
   return (
     <MainContainer>
+      <DarkDiv click={click}/>
+
         <Container>
           <PowerButton />
-          <LogoComponent />
-          <SocialIcons />
-
+          <LogoComponent theme={click ? 'dark' : 'light' }/>
+          <SocialIcons theme={click ? 'dark' : 'light' } />
           <Center click={click}>
             <YinYang onClick={()=> handleClick() } width={click ? 120 : 200 } height={click ? 120 : 200 } fill='currentColor' />
             <span>click here</span>
           </Center>
 
           <Contact target="_blank" to={{pathname:"mailto:salar.ghi1993@gmail.com"}}>
-            <h3>
+            <motion.h2 
+              whileHover={{scale: 1.1}}
+              whileTap={{scale: 0.9}}
+            >
               say hi...
-            </h3>
+            </motion.h2>
           </Contact>
-          <BLOG target="_blank" to="/blog">
-            <h3>
+          <BLOG to="/blog">
+            <motion.h2 
+                whileHover={{scale: 1.1}}
+                whileTap={{scale: 0.9}}
+              >
               Blog
-            </h3>
+            </motion.h2>
           </BLOG>
-          <WORK target="_blank" to="/work">
-            <h3>
+          <WORK to="/work" click={click}>
+            <motion.h2 
+            whileHover={{scale: 1.1}}
+            whileTap={{scale: 0.9}}
+            >
               Work
-            </h3>
+            </motion.h2>
           </WORK>
 
           <BottomBar>
-            <ABOUT target="_blank" to="/about">
-              <h3>
+            <ABOUT click={click} to="/about">
+              <motion.h2 
+                whileHover={{scale: 1.1}}
+                whileTap={{scale: 0.9}}
+              >
                 About.
-              </h3>
+              </motion.h2>
             </ABOUT>
-            <SKILLS target="_blank" to="/skills">
-              <h3>
+            <SKILLS click={click} to="/skills">
+              <motion.h2 
+                whileHover={{scale: 1.1}}
+                whileTap={{scale: 0.9}}
+              >
                 SKILLS
-              </h3>
+              </motion.h2>
             </SKILLS>
           </BottomBar>
-
         </Container>
+        {click ? <Intro click={click} /> : null}
     </MainContainer>
   )
 }
