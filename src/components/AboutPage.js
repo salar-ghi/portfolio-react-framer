@@ -6,7 +6,7 @@ import LogoComponent from '../subComponents/LogoComponent'
 import PowerButton from '../subComponents/PowerButton'
 import SocialIcons from '../subComponents/SocialIcons'
 import ParticleComponent from '../subComponents/ParticleComponent';
-
+import BigTitle from '../subComponents/BigTitle';
 import astronaut from '../assets/Images/spaceman.png';
 
 const Box = styled.div`
@@ -84,7 +84,7 @@ export const AboutPage = () => {
 
 
         </Main>
-
+        <BigTitle text='ABOUT' top='10%' left='5%'/>
 
 
       </Box>

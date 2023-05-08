@@ -7,9 +7,11 @@ import SocialIcons from '../subComponents/SocialIcons'
 import { Blogs } from '../data/BlogData'
 import BlogComponent from './BlogComponent'
 import { AnchorComponent } from '../subComponents/AnchorComponent'
+import BigTitle from '../subComponents/BigTitle'
+import { motion } from 'framer-motion'
 
 
-const MainContainer = styled.div`
+const MainContainer = styled(motion.div)`
   background-image: url(${img});
   background-size: cover;
   background-repeat: no-repeat;
@@ -36,6 +38,19 @@ const Grid = styled.div`
   grid-gap: calc(1rem + 2vw);
 `
 
+const container = {
+  hidden: {opacity:0},
+  show: {
+    opacity: 1,
+
+    transition: {
+      staggerChildren:0.55,
+      duration: 0.55,
+    }
+  }
+}
+
+
 export const BlogPage = () => {
   const [numbers, setNumbers] = useState(0)
 
@@ -47,7 +62,14 @@ export const BlogPage = () => {
 
 
   return (
-    <MainContainer>
+    <MainContainer 
+      variants={container}
+      initial='hidden'
+      animate='show'
+      exit={{
+        opacity: 0, transition: {duration: 0.5}
+      }}
+    >
       <Container>
         <LogoComponent /> 
         <PowerButton />
@@ -64,6 +86,7 @@ export const BlogPage = () => {
             </Grid>
           </Center>
 
+          <BigTitle text='BLOG' top='5rem' left='5rem'/>
       </Container>        
     </MainContainer>
   )

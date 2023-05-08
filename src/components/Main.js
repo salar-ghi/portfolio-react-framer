@@ -131,6 +131,14 @@ export const Main = () => {
 
           <Contact target="_blank" to={{pathname:"mailto:salar.ghi1993@gmail.com"}}>
             <motion.h2 
+            initial={{
+              y:-200,
+              transition: { type: 'spring', duration: 1.5, delay: 1 }
+            }}
+            animate={{
+              y:0,
+              transition: { type: 'spring', duration: 1.5, delay: 1 }
+            }}
               whileHover={{scale: 1.1}}
               whileTap={{scale: 0.9}}
             >
@@ -139,6 +147,14 @@ export const Main = () => {
           </Contact>
           <BLOG to="/blog">
             <motion.h2 
+              initial={{
+                y:-200,
+                transition: { type: 'spring', duration: 1.5, delay: 1 }
+              }}
+              animate={{
+                y:0,
+                transition: { type: 'spring', duration: 1.5, delay: 1 }
+              }}
                 whileHover={{scale: 1.1}}
                 whileTap={{scale: 0.9}}
               >
@@ -147,6 +163,14 @@ export const Main = () => {
           </BLOG>
           <WORK to="/work" click={click}>
             <motion.h2 
+            initial={{
+              y:-200,
+              transition: { type: 'spring', duration: 1.5, delay: 1 }
+            }}
+            animate={{
+              y:0,
+              transition: { type: 'spring', duration: 1.5, delay: 1 }
+            }}
             whileHover={{scale: 1.1}}
             whileTap={{scale: 0.9}}
             >
@@ -157,6 +181,14 @@ export const Main = () => {
           <BottomBar>
             <ABOUT click={click} to="/about">
               <motion.h2 
+              initial={{
+                y:200,
+                transition: { type: 'spring', duration: 1.5, delay: 1.2 }
+              }}
+              animate={{
+                y:0,
+                transition: { type: 'spring', duration: 1.5, delay: 1.2 }
+              }}
                 whileHover={{scale: 1.1}}
                 whileTap={{scale: 0.9}}
               >
@@ -165,6 +197,14 @@ export const Main = () => {
             </ABOUT>
             <SKILLS click={click} to="/skills">
               <motion.h2 
+              initial={{
+                y:200,
+                transition: { type: 'spring', duration: 1.5, delay: 1.2 }
+              }}
+              animate={{
+                y:0,
+                transition: { type: 'spring', duration: 1.5, delay: 1.2 }
+              }}
                 whileHover={{scale: 1.1}}
                 whileTap={{scale: 0.9}}
               >
